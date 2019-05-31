@@ -1,0 +1,22 @@
+package plausibcheck.adress
+
+import com.example.demo.model.Address;
+import com.example.demo.model.fact.AddressCheckResult;
+
+rule "Postcode should be filled with exactly 5 numbers"
+    when
+        address : Address(postcode != null, postcode matches "([0-9]{5})")
+        checkResult : AddressCheckResult();
+    then
+        checkResult.setPostCodeResult(true);
+		System.out.println("规则中打印日志：校验通过!");
+end
+
+rule "Country/Area should be HKG"
+    when
+        address : Address(country != null, country == "HKG")
+        checkResult : AddressCheckResult();
+    then
+        checkResult.setCountryResult(true);
+		System.out.println("规则中打印日志：Country/Area 校验通过!");
+end

@@ -1,0 +1,23 @@
+package com.hsbc.ins.ips.dtt
+
+
+import com.example.demo.model.Proposal;
+import com.example.demo.model.RuleResponse;
+
+//Product amount requirement rule
+rule "#8A Minimum basic sum insured policy (HKD 250,000)"
+    when
+        p : Proposal(sumInsured != null, sumInsured < 250000)
+        r : RuleResponse()
+    then
+        r.reportError("Sum insured amount should be at least HKD 250,000", "sumInsured");
+end
+
+//Product currency requirement rule
+rule "#8B Currency policy"
+    when
+        p : Proposal((currency == null) || (currency!="HKD") )
+        r : RuleResponse()
+    then
+        r.reportError("HKD currency only", "currency");
+end
