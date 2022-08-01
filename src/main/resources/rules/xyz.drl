@@ -1,0 +1,13 @@
+package com.cncbi
+
+import com.example.demo.model.User;
+import com.example.demo.model.fin.PromoCampaign;
+
+rule "Campaign Eligibility Checking"
+    when
+        u : User()
+        c : PromoCampaign(allFactMatched(u) == true);
+    then
+		System.out.println("User "+ u.getUserName() + " With Campaign " + c.getCampaignCode() + " Eligibility Checking Pass!");
+end
+

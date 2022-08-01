@@ -20,3 +20,4 @@ rule "Country/Area should be HKG"
         checkResult.setCountryResult(true);
 		System.out.println("规则中打印日志：Country/Area 校验通过!");
 end
+
